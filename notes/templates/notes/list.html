@@ -1,0 +1,28 @@
+{% extends 'notes/base.html' %}
+{% block title %}Your Notes{% endblock %}
+
+{% block content %}
+<a href="{% url 'create_note' %}" class="btn btn-primary mb-3">+ Add New Note</a>
+
+{% if notes %}
+    <div class="row">
+        {% for note in notes %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ note.title }}</h5>
+                        <p class="card-text">{{ note.content }}</p>
+                        <small class="text-muted">Created: {{ note.created_at }}</small>
+                        <div class="mt-2">
+                            <a href="{% url 'edit_note' note.id %}" class="btn btn-sm btn-outline-primary">✏️ Edit</a>
+                            <a href="{% url 'delete_note' note.id %}" class="btn btn-sm btn-outline-danger">🗑️ Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No notes yet.</p>
+{% endif %}
+{% endblock %}

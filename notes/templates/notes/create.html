@@ -1,0 +1,12 @@
+{% extends 'notes/base.html' %}
+{% block title %}Add Note{% endblock %}
+
+{% block content %}
+<h4>Add New Note</h4>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'list_notes' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
